@@ -1,3 +1,5 @@
+require 'faraday'
+
 module NatureRemoApi
   class Client
     # TODO: NatureRemoApi::Config::ATTRIBUTESを下記に設定できるようにする
@@ -8,6 +10,8 @@ module NatureRemoApi
         send("#{key}=", options.fetch(key, NatureRemoApi.config.send(key)))
       end
       @api_key ||= NatureRemoApi.config.api_key
+      @client = Faraday.new(url: endpoint)
+      @client.headers['Authorization'] = "Bearer #{api_key}"
     end
 
     class << self
