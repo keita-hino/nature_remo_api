@@ -3,6 +3,7 @@ module NatureRemoApi
     extend self
 
     ATTRIBUTES = %i[
+      endpoint
       api_key
       default_max_retries
     ].freeze
@@ -10,6 +11,7 @@ module NatureRemoApi
     attr_accessor(*Config::ATTRIBUTES)
 
     def reset
+      self.endpoint = 'https://api.nature.global/'
       self.api_key = nil
       self.default_max_retries = 10
     end
