@@ -3,7 +3,7 @@ require 'faraday'
 module NatureRemoApi
   class Client
     # TODO: NatureRemoApi::Config::ATTRIBUTESを下記に設定できるようにする
-    attr_accessor :endpoint, :api_key, :default_max_retries
+    attr_accessor :endpoint, :api_key, :default_max_retries, :client
 
     def initialize(options = {})
       NatureRemoApi::Config::ATTRIBUTES.each do |key|
