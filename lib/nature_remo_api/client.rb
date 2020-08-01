@@ -21,7 +21,7 @@ module NatureRemoApi
     # TODO: BaseClientを作ってそちらに定義
     Faraday::Connection::METHODS.each do |method|
       define_method(method) do |url, args = {}, &block|
-        client.__send__(method)
+        client.__send__(method, url)
       end
     end
 
