@@ -1,4 +1,5 @@
 require 'faraday'
+require 'json'
 
 module NatureRemoApi
   class Client
@@ -21,7 +22,8 @@ module NatureRemoApi
     # TODO: BaseClientを作ってそちらに定義
     Faraday::Connection::METHODS.each do |method|
       define_method(method) do |url, args = {}, &block|
-        client.__send__(method, url)
+        response = client.__send__(method, url).body
+        JSON.parse(response)
       end
     end
 
