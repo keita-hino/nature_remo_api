@@ -22,6 +22,26 @@ Or install it yourself as:
 
 ## Usage
 
+Get an access token at the following site
+https://developer.nature.global/
+
+### setup
+```ruby
+NatureRemoApi::Client.configure do | config |
+  config.access_token = <token>
+end
+```
+
+### get user info
+```ruby
+NatureRemoApi::Client.new.user_me
+```
+
+### get devices
+```ruby
+NatureRemoApi::Client.new.devices
+```
+
 TODO: Write usage instructions here
 
 ## Development
