@@ -14,6 +14,10 @@ module NatureRemoApi
       @client.headers['Authorization'] = "Bearer #{api_key}"
     end
 
+    def user_me
+      get('/1/users/me')
+    end
+
     # TODO: BaseClientを作ってそちらに定義
     Faraday::Connection::METHODS.each do |method|
       define_method(method) do |url, args = {}, &block|
