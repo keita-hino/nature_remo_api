@@ -4,7 +4,7 @@ module NatureRemoApi
 
     ATTRIBUTES = %i[
       endpoint
-      api_key
+      access_token
       default_max_retries
     ].freeze
 
@@ -12,7 +12,7 @@ module NatureRemoApi
 
     def reset
       self.endpoint = 'https://api.nature.global/'
-      self.api_key = nil
+      self.access_token = nil
       self.default_max_retries = 10
     end
 
