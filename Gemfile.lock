@@ -1,7 +1,11 @@
 PATH
   remote: .
   specs:
-    nature_remo_api (0.1.0)
+    nature_remo_api (0.1.2)
+      bundler (~> 2.0)
+      faraday (>= 1.0)
+      rake (~> 13.0)
+      rspec (~> 3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -10,7 +14,7 @@ GEM
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
     multipart-post (2.1.1)
-    rake (10.5.0)
+    rake (13.0.1)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -29,11 +33,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 2.0)
-  faraday (>= 1.0)
   nature_remo_api!
-  rake (~> 10.0)
-  rspec (~> 3.0)
 
 BUNDLED WITH
    2.0.2
