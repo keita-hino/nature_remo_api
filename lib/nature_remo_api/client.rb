@@ -15,8 +15,17 @@ module NatureRemoApi
       @client.headers['Authorization'] = "Bearer #{access_token}"
     end
 
+    # TODO: 後々別ファイルに切り出す
     def user_me
       get('/1/users/me')
+    end
+
+    def update_user_me(nickname:)
+      params = {
+        nickname: nickname
+      }
+
+      post('/1/users/me', params)
     end
 
     def devices
@@ -26,7 +35,7 @@ module NatureRemoApi
     # TODO: BaseClientを作ってそちらに定義
     Faraday::Connection::METHODS.each do |method|
       define_method(method) do |url, args = {}, &block|
-        response = client.__send__(method, url).body
+        response = client.__send__(method, url, args.reject {|_k, v| v.nil? }).body
         JSON.parse(response)
       end
     end
