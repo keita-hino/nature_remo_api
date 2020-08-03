@@ -36,6 +36,10 @@ module NatureRemoApi
       get('/1/appliances')
     end
 
+    def signals(appliance_id:)
+      get("/1/appliances/#{appliance_id}/signals")
+    end
+
     # TODO: BaseClientを作ってそちらに定義
     Faraday::Connection::METHODS.each do |method|
       define_method(method) do |url, args = {}, &block|
