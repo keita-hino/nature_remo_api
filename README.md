@@ -32,15 +32,26 @@ NatureRemoApi::Client.configure do | config |
 end
 ```
 
-### get user info
+### call API
 ```ruby
-NatureRemoApi::Client.new.user_me
+client = NatureRemoApi::Client.new
+
+# get user info
+client.user_me
+
+# update user info
+client.update_user_me(nickname: <nickname>)
+
+# get devices
+client.devices
+
+# get appliances
+client.appliances
+
+# get signals
+client.signals(appliance_id: <appliance_id>)
 ```
 
-### get devices
-```ruby
-NatureRemoApi::Client.new.devices
-```
 
 TODO: Write usage instructions here
 
