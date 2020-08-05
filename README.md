@@ -50,6 +50,9 @@ client.appliances
 
 # get signals
 client.signals(appliance_id: <appliance_id>)
+
+# send signal to your appliances
+client.send_signal(signal_id: <signal_id>)
 ```
 
 
