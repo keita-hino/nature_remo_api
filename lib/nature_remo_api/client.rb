@@ -1,8 +1,11 @@
 require 'faraday'
 require 'json'
+require_relative "endpoints"
 
 module NatureRemoApi
   class Client
+    include Endpoints
+
     # TODO: NatureRemoApi::Config::ATTRIBUTESを下記に設定できるようにする
     attr_accessor :endpoint, :access_token, :default_max_retries, :client
 
@@ -13,39 +16,6 @@ module NatureRemoApi
       @access_token ||= NatureRemoApi.config.access_token
       @client = Faraday.new(url: endpoint)
       @client.headers['Authorization'] = "Bearer #{access_token}"
-    end
-
-    # TODO: 後々別ファイルに切り出す
-    def user_me
-      get('/1/users/me')
-    end
-
-    def update_user_me(nickname:)
-      params = {
-        nickname: nickname
-      }
-
-      post('/1/users/me', params)
-    end
-
-    def devices
-      get('/1/devices')
-    end
-
-    def appliances
-      get('/1/appliances')
-    end
-
-    def signals(appliance_id:)
-      get("/1/appliances/#{appliance_id}/signals")
-    end
-
-    def send_signal(signal_id:)
-      params = {
-        signal: signal_id
-      }
-
-      post("/1/signals/#{signal_id}/send", params)
     end
 
     # TODO: BaseClientを作ってそちらに定義
