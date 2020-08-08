@@ -1,5 +1,6 @@
 require 'faraday'
 require 'json'
+require "faraday_middleware"
 require_relative "endpoints"
 
 module NatureRemoApi
@@ -14,7 +15,12 @@ module NatureRemoApi
         send("#{key}=", options.fetch(key, NatureRemoApi.config.send(key)))
       end
       @access_token ||= NatureRemoApi.config.access_token
-      @client = Faraday.new(url: endpoint)
+      @client = Faraday.new(url: endpoint) do |conn|
+        conn.request :json
+        conn.response :mashify
+        conn.response :json, :content_type => /\bjson$/
+        conn.adapter Faraday.default_adapter
+      end
       @client.headers['Authorization'] = "Bearer #{access_token}"
     end
 
@@ -22,7 +28,6 @@ module NatureRemoApi
     Faraday::Connection::METHODS.each do |method|
       define_method(method) do |url, args = {}, &block|
         response = client.__send__(method, url, args.reject {|_k, v| v.nil? }).body
-        JSON.parse(response)
       end
     end
 
