@@ -45,6 +45,9 @@ client.update_user_me(nickname: <nickname>)
 # get devices
 client.devices
 
+# update device
+client.update_device(device_id: <device_id>, name: <name>)
+
 # get appliances
 client.appliances
 
