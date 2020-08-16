@@ -11,6 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{nature remo's api client}
   spec.homepage      = "https://github.com/keita-hino/nature-remo-ruby-client"
   spec.license       = "MIT"
+  spec.required_ruby_version = ">= 2.3.0"
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
