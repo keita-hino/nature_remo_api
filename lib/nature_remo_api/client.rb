@@ -1,17 +1,17 @@
 require 'faraday'
 require 'json'
 require "faraday_middleware"
+require "nature_remo_api/config"
 require_relative "endpoints"
 
 module NatureRemoApi
   class Client
     include Endpoints
 
-    # TODO: NatureRemoApi::Config::ATTRIBUTESを下記に設定できるようにする
-    attr_accessor :endpoint, :access_token, :default_max_retries
+    attr_accessor(*Config::ATTRIBUTES)
 
     def initialize(options = {})
-      NatureRemoApi::Config::ATTRIBUTES.each do |key|
+      Config::ATTRIBUTES.each do |key|
         send("#{key}=", options.fetch(key, NatureRemoApi.config.send(key)))
       end
       @access_token ||= NatureRemoApi.config.access_token
