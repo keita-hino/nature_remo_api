@@ -19,6 +19,7 @@ module NatureRemoApi
         conn.request :json
         conn.response :mashify
         conn.response :json, :content_type => /\bjson$/
+        conn.response :raise_error
         conn.adapter Faraday.default_adapter
       end
       @client.headers['Authorization'] = "Bearer #{access_token}"
